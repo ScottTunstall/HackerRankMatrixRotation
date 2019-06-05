@@ -17,9 +17,7 @@ namespace HackerRankMatrixRotation
             var newMatrix = new List<List<int>>();
             for (int i = 0; i < maxRows; i++)
                 newMatrix.Add(new List<int>(matrix[i]));
-
-        
-
+            
             var q = new Stack<int>();
 
             for (int rotations = 0; rotations < r; rotations++)
@@ -106,7 +104,7 @@ namespace HackerRankMatrixRotation
             foreach (var row in newMatrix)
             {
                 var asArray = row.ToArray();
-                Console.WriteLine(string.Join(' ', asArray));
+                Console.WriteLine(string.Join(" ", asArray));
             }
 
             Console.ReadLine();
