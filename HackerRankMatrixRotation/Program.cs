@@ -21,17 +21,20 @@ namespace HackerRankMatrixRotation
 
             for (int rotations = 0; rotations < r; rotations++)
             {
-                //Console.WriteLine("Before rotation:");
-                //Console.WriteLine("===============");
+#if DEBUG
 
-                //foreach (var row in newMatrix)
-                //{
-                //    var asArray = row.ToArray();
-                //    Console.WriteLine(string.Join(" ", asArray));
-                //}
+                Console.WriteLine("Before rotation:");
+                Console.WriteLine("===============");
 
-                //Console.WriteLine();
-                //Console.WriteLine();
+                foreach (var row in newMatrix)
+                {
+                    var asArray = row.ToArray();
+                    Console.WriteLine(string.Join(" ", asArray));
+                }
+
+                Console.WriteLine();
+                Console.WriteLine();
+#endif
 
                 // define rect to work on
                 var left = 0;
@@ -74,20 +77,21 @@ namespace HackerRankMatrixRotation
                     bottom--;
                 }
 
+#if DEBUG
+                Console.WriteLine("After rotation:");
+                Console.WriteLine("===============");
 
-                //Console.WriteLine("After rotation:");
-                //Console.WriteLine("===============");
+                foreach (var row in newMatrix)
+                {
+                    var asArray = row.ToArray();
+                    Console.WriteLine(string.Join(" ", asArray));
+                }
 
-                //foreach (var row in newMatrix)
-                //{
-                //    var asArray = row.ToArray();
-                //    Console.WriteLine(string.Join(" ", asArray));
-                //}
+                Console.WriteLine();
+                Console.WriteLine();
 
-                //Console.WriteLine();
-                //Console.WriteLine();
-
-                //Console.ReadLine();
+                Console.ReadLine();
+#endif
             }
 
             return newMatrix;
