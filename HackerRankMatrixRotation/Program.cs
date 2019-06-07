@@ -17,7 +17,7 @@ namespace HackerRankMatrixRotation
             for (int i = 0; i < maxRows; i++)
                 newMatrix.Add(new List<int>(matrix[i]));
             
-            var q = new Stack<int>();
+            var q = new Stack<int>(maxRows * maxColumns);
 
             for (int rotations = 0; rotations < r; rotations++)
             {
