@@ -7,16 +7,19 @@ namespace HackerRankMatrixRotation
     class Program
     {
 
-        static List<List<int>> matrixRotation(List<List<int>> matrix, int r)
+        static int[,] matrixRotation(List<List<int>> matrix, int maxRows, int maxColumns, int r)
         {
-            var maxRows = matrix.Count;
-            var maxColumns = matrix.Max(x => x.Count);
-
             // Clone
-            var newMatrix = new List<List<int>>();
+            var newMatrix = new int[maxRows, maxColumns];
             for (int i = 0; i < maxRows; i++)
-                newMatrix.Add(new List<int>(matrix[i]));
-            
+                for (int j = 0; j < maxColumns; j++)
+                    newMatrix[i, j] = matrix[i][j];
+
+
+            //var newMatrix = new List<List<int>>();
+            //for (int i = 0; i < maxRows; i++)
+            //    newMatrix.Add(new List<int>(matrix[i]));
+
             var q = new Stack<int>(maxRows * maxColumns);
 
             for (int rotations = 0; rotations < r; rotations++)
@@ -26,10 +29,11 @@ namespace HackerRankMatrixRotation
                 Console.WriteLine("Before rotation:");
                 Console.WriteLine("===============");
 
-                foreach (var row in newMatrix)
+                for (int i = 0; i < maxRows; i++)
                 {
-                    var asArray = row.ToArray();
-                    Console.WriteLine(string.Join(" ", asArray));
+                    for (int j = 0; j < maxColumns; j++)
+                        Console.Write(newMatrix[i, j]);
+                    Console.WriteLine();
                 }
 
                 Console.WriteLine();
@@ -45,30 +49,30 @@ namespace HackerRankMatrixRotation
                 while (right>left && bottom> top)
                 {
                     for (int i = right; i >= left; i--)
-                        q.Push(newMatrix[top][i]);
+                        q.Push(newMatrix[top,i]);
 
                     for (int i = top + 1; i <= bottom; i++)
-                        q.Push(newMatrix[i][left]);
+                        q.Push(newMatrix[i,left]);
 
                     for (int i = left + 1; i <= right; i++)
-                        q.Push(newMatrix[bottom][i]);
+                        q.Push(newMatrix[bottom,i]);
 
                     for (int i = bottom - 1; i > top; i--)
-                        q.Push(newMatrix[i][right]);
+                        q.Push(newMatrix[i,right]);
 
 
                     // Now update the new matrix
                     for (int i = top; i <= bottom; i++)
-                        newMatrix[i][right] = q.Pop();
+                        newMatrix[i,right] = q.Pop();
 
                     for (int i = right - 1; i >= left; i--)
-                        newMatrix[bottom][i] = q.Pop();
+                        newMatrix[bottom,i] = q.Pop();
 
                     for (int i = bottom - 1; i > top; i--)
-                        newMatrix[i][left] = q.Pop();
+                        newMatrix[i,left] = q.Pop();
 
                     for (int i = left; i < right; i++)
-                        newMatrix[top][i] = q.Pop();
+                        newMatrix[top,i] = q.Pop();
 
                     left++;
                     right--;
@@ -81,16 +85,15 @@ namespace HackerRankMatrixRotation
                 Console.WriteLine("After rotation:");
                 Console.WriteLine("===============");
 
-                foreach (var row in newMatrix)
+                for (int i = 0; i < maxRows; i++)
                 {
-                    var asArray = row.ToArray();
-                    Console.WriteLine(string.Join(" ", asArray));
+                    for (int j = 0; j < maxColumns; j++)
+                        Console.Write(newMatrix[i, j]);
+                    Console.WriteLine();
                 }
 
                 Console.WriteLine();
                 Console.WriteLine();
-
-                Console.ReadLine();
 #endif
             }
 
@@ -143,13 +146,15 @@ namespace HackerRankMatrixRotation
             Console.WriteLine();
             Console.WriteLine();
 
-            var newMatrix = matrixRotation(matrix, r);
+            var newMatrix = matrixRotation(matrix, m, n, r);
 
-            foreach (var row in newMatrix)
+            for (int i = 0; i < m; i++)
             {
-                var asArray = row.ToArray();
-                Console.WriteLine(string.Join(" ", asArray));
+                for (int j = 0; j < n; j++)
+                    Console.Write(newMatrix[i, j] + " ");
+                Console.WriteLine();
             }
+
 
             Console.ReadLine();
         }
